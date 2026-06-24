@@ -1,0 +1,290 @@
+git config --global user.name "username"
+git config --global user.email "your@email.com"
+
+ssh-keygen -t ed25519 -C "your@email.com"
+cat ~/.ssh/id_ed25519.pub
+ssh -T git@github.com
+git clone git@github.com:username/repo.git
+ssh root@
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+
+--------------------
+--------------------
+
+curl -fsSL https://fnm.vercel.app/install | bash
+source ~/.bashrc
+fnm install --lts
+fnm use lts-latest
+npm create vite@latest frontend -- --template react
+
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/yumrepos/vscode/config.repo
+sudo dnf install code
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv python install
+uv init
+uv venv
+source .venv/bin/activate
+uv add django djangorestframework django-environ ruff pre-commit pytest pytest-django django-cors-headers [uv pip install django ...]
+uv sync [uv pip freeze > requirements.txt, uv pip install requirements.txt]
+pre-commit install
+
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo dnf install brave-browser
+
+--------------------
+--------------------
+
+sudo dnf install neovim
+
+gg"+yG
+
+:Ex
+
+:!mkdir -p config/settings
+
+:e config/settings/__init__.py
+
+sudo dnf install wl-clipboard
+
+---
+
+mkdir -p ~/.config/nvim
+nvim ~/.config/nvim/init.vim
+
+{
+    set clipboard=unnamedplus
+}
+
+--------------------
+--------------------
+
+django-admin startproject config .
+python manage.py runserver
+python manage.py startapp accounts
+python manage.py makemigrations accounts
+python manage.py migrate
+python manage.py createsuperuser
+python -c "import secrets; print(secrets.token_urlsafe(50))"
+
+SECRET_KEY=random
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+
+VITE_API_URL=http://localhost:8000
+
+terminal / hacker chat / IRC minimal clone, 100% WCAG compliant IRC UI
+
+--------------------
+--------------------
+
+curl -c cookies.txt -b cookies.txt http://localhost:8000/api/auth/csrf/
+
+curl -c cookies.txt -b cookies.txt \
+  -H "Content-Type: application/json" \
+  -d '{"username":"pera","email":"pera@example.com","password":"VrloJakaLozinka123"}' \
+  http://localhost:8000/api/auth/register/
+
+curl -b cookies.txt http://localhost:8000/api/auth/me/
+
+curl -c cookies.txt -b cookies.txt \
+  -X POST \
+  -H "X-CSRFToken: $(grep csrftoken cookies.txt | awk '{print $7}')" \
+  http://localhost:8000/api/auth/logout/
+
+curl -c cookies.txt -b cookies.txt \
+  -H "Content-Type: application/json" \
+  -d '{"username":"pera","password":"VrloJakaLozinka123"}' \
+  http://localhost:8000/api/auth/login/
+
+curl -b cookies.txt http://localhost:8000/api/auth/me/
+
+curl -b cookies.txt \
+  -X POST \
+  -H "X-CSRFToken: $(grep csrftoken cookies.txt | awk '{print $7}')" \
+  http://localhost:8000/api/auth/logout/
+
+--------------------
+--------------------
+
+brew services stop postgresql@18
+brew uninstall postgresql@18
+rm -rf /opt/homebrew/var/postgresql@18
+brew install postgresql@18
+brew services start postgresql@18
+
+psql postgres
+\l
+CREATE DATABASE w;
+\c w
+\dt
+\q
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'w',
+        'USER': 'up',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+--------------------
+--------------------
+
+vi .bash_history
+sudo dnf upgrade --refresh
+free -h
+journalctl -p err -b
+
+---
+
+nmcli dev wifi list
+nmcli dev wifi connect "" password ""
+nmcli dev wifi connect ""
+
+---
+
+nano ~/.bashrc
+
+{
+  PS1='\[\e[38;5;245m\]\w\[\e[0m\] \[\e[38;5;215m\]\$\[\e[0m\] '
+}
+
+---
+
+mkdir -p ~/.config/sway
+cp /etc/sway/config ~/.config/sway/config
+nano ~/.config/sway/config
+swaymsg reload
+
+{
+    # output * bg /usr/share/backgrounds/default.jxl fill
+    output * background #2E5F7A solid_color
+    output eDP-1 scale 1.25 position 0 0
+    output HDMI-A-1 scale 1.5 position 1536 0
+    workspace 1 output eDP-1
+    workspace 2 output HDMI-A-1
+    input type:touchpad {
+        tap enabled
+        natural_scroll enabled
+        dwt enabled
+        middle_emulation enabled
+    }
+}
+
+---
+
+mkdir -p ~/.config/waybar
+cp /etc/xdg/waybar/style.css ~/.config/waybar/
+nano ~/.config/waybar/config
+nano ~/.config/waybar/style.css
+> ~/.config/waybar/style.css
+swaymsg reload
+
+{
+  "layer": "top",
+  "position": "top",
+  "height": 26,
+  "modules-left": ["sway/workspaces", "sway/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["network", "pulseaudio", "battery"],
+  "clock": {
+    "format": "{:%H:%M}"
+  },
+  "battery": {
+    "format": "{capacity}%"
+  },
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": "off"
+  },
+  "pulseaudio": {
+    "format": " {volume}%"
+  }
+}
+
+{                                                                 
+  * {
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 13px;
+      border: none;
+      border-radius: 0;
+      min-height: 0;
+  }
+
+  window#waybar {
+      background-color: #1e2127;
+      color: #abb2bf;
+  }
+
+  #workspaces button {
+      padding: 0 6px;
+      color: #5c6370;
+      background: transparent;
+  }
+
+  #workspaces button.focused,
+  #workspaces button.active {
+      color: #abb2bf;
+      box-shadow: inset 0 -2px #61afef;
+  }
+
+  #workspaces button.urgent {
+      color: #e06c75;
+  }
+
+  #workspaces button:hover {
+      background: rgba(255, 255, 255, 0.05);
+  }
+
+  #clock,
+  #battery,
+  #network,
+  #pulseaudio,
+  #window,
+  #workspaces {
+      padding: 0 10px;
+      color: #abb2bf;
+  }
+
+  #clock {
+      color: #e5c07b;
+  }
+
+  #battery.charging,
+  #battery.plugged {
+      color: #98c379;
+  }
+
+  #battery.critical:not(.charging) {
+      color: #e06c75;
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-timing-function: steps(12);
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+  }
+
+  @keyframes blink {
+      to { color: #1e2127; }
+  }
+
+  #network.disconnected {
+      color: #e06c75;
+  }
+
+  #pulseaudio.muted {
+      color: #5c6370;
+  }
+}
+
+--------------------
+--------------------
